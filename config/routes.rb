@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, module: 'users/auth'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, module: 'user/auth'
+  
+  scope module: :user do
+    get 'users/logs', to: 'users#log', as: :logs
+    root to: 'users#top'
+  end
 end
