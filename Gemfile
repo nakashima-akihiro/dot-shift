@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # Added
 gem 'devise'
 gem 'haml-rails'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
