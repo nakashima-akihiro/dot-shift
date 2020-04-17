@@ -1,4 +1,4 @@
-%p 出勤
-%p 退勤
+%p= button_to '出勤', time_in_path(@user, log: {day: Time.now.day, time_in: Time.now.to_s.split(' ')[1]})
+%p= button_to '退勤', time_out_path(@user, log: {day: Time.now.day, time_out: Time.now.to_s.split(' ')[1]})
 
-%p 記録
+%p= link_to '記録', user_logs_path(@user)

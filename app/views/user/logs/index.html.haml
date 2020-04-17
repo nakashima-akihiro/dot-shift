@@ -1,0 +1,15 @@
+%table.table.table-bordered
+  %thead.thead-light
+    %tr
+      %th 日付
+      %th 出勤
+      %th 退勤
+      %th 勤務時間
+      %th 操作１
+    - @logs.each do |log|
+      %tr
+        %td= log.day
+        %td= log.time_in 
+        %td= log.time_out
+        %td
+        %td 編集
