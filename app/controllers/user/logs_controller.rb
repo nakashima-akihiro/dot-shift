@@ -19,7 +19,6 @@ class User::LogsController < ApplicationController
     @user = current_user
     @log = @user.logs.find_by(day: params[:log][:day])
     if @log.time_out == nil
-      binding.pry
       @log.time_out = Time.now.to_s.split(' ')[1]
       @log.save
       redirect_to root_path, notice: '退勤しました'
