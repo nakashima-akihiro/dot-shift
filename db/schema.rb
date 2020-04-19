@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_051901) do
+ActiveRecord::Schema.define(version: 2020_04_19_110714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "logs", force: :cascade do |t|
-    t.string "day", null: false
-    t.string "time_in"
-    t.string "time_out"
+    t.datetime "day", null: false
+    t.datetime "time_in"
+    t.datetime "time_out"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rest_time"
     t.index ["user_id"], name: "index_logs_on_user_id"
   end
 

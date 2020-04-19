@@ -1,0 +1,12 @@
+= form_with(model: @log, url: user_logs_update_path, local: true) do |f|
+  .form-group.mb-3
+    %label 出勤
+    = f.time_select :time_in, {}, class: ''
+  .form-group.mb-3
+    %label 退勤
+    = f.time_select :time_out, {}, class: ''
+  .form-group.mb-3
+    %label 休憩
+    = f.select :rest_time, ["00:15", "00:30", "00:45", "01:00"]
+  .actions
+    = f.submit '変更する', class: 'btn btn-primary'
