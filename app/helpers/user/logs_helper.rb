@@ -3,11 +3,12 @@ module User::LogsHelper
     attendance = log.time_in
     leaving = log.time_out
 
-    # 滞在時間（休憩も含む）
+    # 滞在時間(分)（休憩も含む）
     working_seconds = leaving - attendance
     working_minutes = working_seconds / 60
 
     # 休憩時間
+    binding.pry
     rest_time_array = log.rest_time.split(':').map(&:to_i)
     rest_time_minutes = rest_time_array[0] * 60 + rest_time_array[1]
 

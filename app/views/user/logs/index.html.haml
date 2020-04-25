@@ -9,4 +9,9 @@
       %th 操作１
     - @logs.each do |log|
       %tr
-        %td hello
+        %td= l log.day, format: :day
+        %td= l log.time_in, format: :time_only
+        %td= l log.time_out, format: :time_only
+        %td= log.rest_time
+        %td= working_times(log) if log.time_out && log.rest_time
+        %td= link_to '編集', user_logs_edit_path
