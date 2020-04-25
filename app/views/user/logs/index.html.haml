@@ -7,11 +7,11 @@
       %th 休憩(h)
       %th 勤務時間
       %th 操作１
-    - @logs.each do |log|
-      %tr
-        %td= l log.day, format: :day
-        %td= l log.time_in, format: :time_only
-        %td= l log.time_out, format: :time_only if log.time_out
-        %td= log.rest_time
-        %td= working_times(log)
-        %td= link_to '編集', user_logs_edit_path
+    -# - @logs.each do |log|
+    -#   %tr
+    -#     %td= l log.day, format: :day
+    -#     %td= l log.time_in, format: :time_only
+    -#     %td= l log.time_out, format: :time_only
+    -#     %td= log.rest_time
+    -#     %td= working_times(log)
+    -#     %td= link_to '編集', user_logs_edit_path
