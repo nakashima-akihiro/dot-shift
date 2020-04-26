@@ -19,3 +19,5 @@ global.toastr = require("toastr")
 
 import 'bootstrap';
 import '../stylesheets/application';
+
+import '../../assets/javascripts/serviceworker-companion.js';
