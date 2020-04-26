@@ -7,11 +7,11 @@ class User::LogsController < ApplicationController
     @user = current_user
     @log = current_user.logs.build(log_params)
     if Log.find_by(day: Time.current.all_day)
-      flash.now[:alert] = 'すでに出勤してますねん(^ ^)'
+      flash.now[:alert] = 'Your are already entried :)'
       render template: "user/users/top"
     else
       @log.save
-      flash.now[:alert] = 'おはよう!!!(^ ^)'
+      flash.now[:notice] = 'Good morning :)'
       render template: "user/users/top"
     end
   end
@@ -20,12 +20,12 @@ class User::LogsController < ApplicationController
     @user = current_user
     @log = @user.logs.find_by(day: Time.current.all_day)
     if @log.time_out
-      flash.now[:alert] = 'すでに退勤してますねん(^ ^)'
+      flash.now[:alert] = 'Your are already exited :)'
       render template: "user/users/top"
     else
       @log.time_out = Time.current
       @log.save
-      flash.now[:alert] = 'お疲れ様でしたーーー!!!(^ ^)'
+      flash.now[:notice] = 'See you again :)'
       render template: "user/users/top"
     end
   end
