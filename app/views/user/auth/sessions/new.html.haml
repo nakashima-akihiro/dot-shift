@@ -1,13 +1,30 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
+-# %h2 Log in
+-# = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+-#   .field
+-#     = f.label :email
+-#     %br/
+-#     = f.email_field :email, autofocus: true, autocomplete: "email"
+-#   .field
+-#     = f.label :password
+-#     %br/
+-#     = f.password_field :password, autocomplete: "current-password"
 
-  .actions
-    = f.submit "ログイン"
+-#   .actions
+-#     = f.submit "ログイン"
+
+.session-new-main
+  .session-new-cover
+    .login-form
+      .login-form-content
+        .login-form-title
+          %h2 Login
+        .login-form-main
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .login-form-main-mail
+              .login-form-main-mail-form
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "yourname@example.com"
+            .login-form-main-password.text-left
+              .login-form-main-password-form
+                = f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: "password"
+            .login-form-main-action
+              = f.submit "ログイン", class: 'form-control btn btn-secondary'
