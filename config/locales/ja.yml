@@ -206,4 +206,6 @@ ja:
       short: "%m/%d %H:%M"
       time_only: "%H:%M"
       day: "%m/%d"
+      date: "%m月%d日(%a)"
+      time: "%H:%M"
     pm: 午後

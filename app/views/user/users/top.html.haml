@@ -1,4 +1,14 @@
-%p= button_to '出勤', time_in_path(@user, log: {day: Time.current, time_in: Time.current})
-%p= button_to '退勤', time_out_path(@user, log: {day: Time.current})
-
-%p= link_to '記録', user_logs_path(@user)
+.top-main.text-center
+  .top-main-cover
+    .top-contents
+      .top-date-time
+        .top-date
+          %h4= l Time.now, format: :date
+        .top-time
+          %h1= l Time.now, format: :time
+      .top-action
+        .top-action-button
+          %h4= button_to 'entry', time_in_path(@user, log: {day: Time.current, time_in: Time.current}), class: 'time_in'
+          %h4= button_to 'exit', time_out_path(@user, log: {day: Time.current}), class: 'time_out'
+        .top-action-log
+          = link_to '記録', user_logs_path(@user), class: 'time-log'
