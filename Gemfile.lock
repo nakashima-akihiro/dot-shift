@@ -177,6 +177,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     sexp_processor (4.14.1)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
@@ -231,6 +233,7 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.2)
   sass-rails (>= 6)
+  serviceworker-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
