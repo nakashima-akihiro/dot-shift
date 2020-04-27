@@ -6,32 +6,29 @@ class User::LogsController < ApplicationController
   def time_in
     @user = current_user
     @log = current_user.logs.build(log_params)
-    if Log.find_by(day: Time.current.all_day)
-      flash.now[:alert] = 'Your are already entried :)'
-      render template: "user/users/top"
-    else
+    unless Log.find_by(day: Time.current.all_day)
       @log.save
-      flash.now[:notice] = 'Good morning :)'
-      render template: "user/users/top"
+      redirect_to root_path, notice: 'Good morning :)'
+    else
+      redirect_to root_path, alert: 'Your are already entried :('
     end
   end
 
   def time_out
     @user = current_user
     @log = @user.logs.find_by(day: Time.current.all_day)
-    if @log.time_out
-      flash.now[:alert] = 'Your are already exited :)'
-      render template: "user/users/top"
-    else
+    unless @log.time_out
       @log.time_out = Time.current
       @log.save
-      flash.now[:notice] = 'See you again :)'
-      render template: "user/users/top"
+      redirect_to root_path, notice: 'See you again :)'
+    else
+      redirect_to root_path, alert: 'Your are already exited :('
     end
   end
 
   def edit
-    @log = Log.find(params[:id])
+    @link_type = params[:link_type]
+    @log = current_user.logs.find(params[:id])
   end
 
   def update
@@ -42,6 +39,20 @@ class User::LogsController < ApplicationController
       render :edit
     end
   end
+
+  # def edit
+  #   @log = Log.find(params[:id])
+  #   @log.time_out = Time.current
+  # end
+
+  # def update
+  #   @log = Log.find(params[:id])
+  #   if @log.update(log_params)
+  #     redirect_to user_logs_path, notice: '変更しました'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
 

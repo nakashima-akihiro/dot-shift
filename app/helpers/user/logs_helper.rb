@@ -8,7 +8,6 @@ module User::LogsHelper
     working_minutes = working_seconds / 60
 
     # 休憩時間
-    binding.pry
     rest_time_array = log.rest_time.split(':').map(&:to_i)
     rest_time_minutes = rest_time_array[0] * 60 + rest_time_array[1]
 
