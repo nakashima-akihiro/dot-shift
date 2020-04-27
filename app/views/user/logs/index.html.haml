@@ -1,17 +1,22 @@
-%table.table.table-bordered
-  %thead.thead-light
-    %tr
-      %th 日付
-      %th 出勤
-      %th 退勤
-      %th 休憩(h)
-      %th 勤務時間
-      %th 休憩時間
-    - @logs.each do |log|
+
+.back-to-top.mt-3.text-center
+  = link_to '← back to top', root_path, style: 'color: #FF8C00', id: 'back-to-top'
+
+.mt-4
+  %table.table.table-bordered
+    %thead.thead-light
       %tr
-        %td= l log.day, format: :day
-        %td= link_to (l log.time_in, format: :time_only), user_log_edit_path(log, link_type: 'time_in')
-        %td= link_to (l log.time_out, format: :time_only), user_log_edit_path(log, link_type: 'time_out') if log.time_out
-        %td= log.rest_time
-        %td= working_times(log) if log.time_out && log.rest_time
-        %td= link_to '入力', user_log_edit_path(log, link_type: 'rest_time')
+        %th 日付
+        %th 出勤
+        %th 退勤
+        %th 休憩(h)
+        %th 勤務時間
+        %th 休憩時間
+      - @logs.each do |log|
+        %tr
+          %td= l log.day, format: :day
+          %td= link_to (l log.time_in, format: :time_only), user_log_edit_path(log, link_type: 'time_in')
+          %td= link_to (l log.time_out, format: :time_only), user_log_edit_path(log, link_type: 'time_out') if log.time_out
+          %td= log.rest_time
+          %td= working_times(log) if log.time_out && log.rest_time
+          %td= link_to '入力', user_log_edit_path(log, link_type: 'rest_time')
