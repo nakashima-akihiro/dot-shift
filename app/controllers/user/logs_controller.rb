@@ -6,7 +6,7 @@ class User::LogsController < ApplicationController
   def time_in
     @user = current_user
     @log = current_user.logs.build(log_params)
-    unless Log.find_by(day: Time.current.all_day)
+    unless @user.logs.find_by(day: Time.current.all_day)
       @log.save
       redirect_to root_path, notice: 'Good morning :)'
     else
