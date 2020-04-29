@@ -3,11 +3,19 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def after_sign_in_path_for(_resource)
-    root_path
+    if devise_controller? && resource_name == :admin
+      # admin_root_path
+    else
+      root_path
+    end
   end
 
   def after_sign_out_path_for(_resource)
-    new_user_session_path
+    if devise_controller? && resource_name == :admin
+      # admin_root_path
+    else
+      new_user_session_path
+    end
   end
 
   private

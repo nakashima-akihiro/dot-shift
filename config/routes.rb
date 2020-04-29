@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins, module: 'admin/auth'
   devise_for :users, module: 'user/auth'
 
   scope module: :user do
