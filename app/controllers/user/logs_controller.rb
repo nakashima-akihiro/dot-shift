@@ -24,12 +24,16 @@ class User::LogsController < ApplicationController
   def time_out
     @user = current_user
     @log = @user.logs.find_by(day: Time.current.all_day)
-    unless @log.time_out
-      @log.time_out = Time.current
-      @log.save
-      redirect_to root_path, notice: 'See you again :)'
+    if @log
+      unless @log.time_out
+        @log.time_out = Time.current
+        @log.save
+        redirect_to root_path, notice: 'See you again :)'
+      else
+        redirect_to root_path, alert: 'Your are already exited :('
+      end
     else
-      redirect_to root_path, alert: 'Your are already exited :('
+      redirect_to root_path, alert: '今日はまだ出勤ボタンが押されてません!!'
     end
   end
 
