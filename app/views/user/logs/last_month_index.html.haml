@@ -4,10 +4,10 @@
 
 .text-center.mt-3
   %h1
-    = Time.current.month
+    = Time.current.last_month.month
     月
 
-.mt-3
+.mt-4
   %table.table.table-bordered
     %thead.thead-light
       %tr
@@ -17,7 +17,7 @@
         %th 休憩(h)
         %th 勤務時間
         %th 休憩時間
-      - @logs.each do |log|
+      - @last_month_logs.each do |log|
         %tr
           %td= l log.day, format: :day
           %td= link_to (l log.time_in, format: :time_only), user_log_edit_path(log, link_type: 'time_in')
@@ -25,6 +25,8 @@
           %td= log.rest_time
           %td= working_times(log) if log.time_out && log.rest_time
           %td= link_to '入力', user_log_edit_path(log, link_type: 'rest_time')
+.mt-3
+  
 
 .last-month-index.text-center
-  = link_to '← last month', user_logs_last_month_path, style: 'color: #3366FF', id: 'last-month-index'
+  = link_to '← this month', user_logs_path, style: 'color: #3366FF', id: 'last-month-index'

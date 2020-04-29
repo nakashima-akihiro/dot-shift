@@ -1,6 +1,13 @@
 class User::LogsController < ApplicationController
   def index
-    @logs = current_user.logs
+    today = Time.current
+    @logs = current_user.logs.where(day: today.all_month)
+  end
+
+  def last_month_index
+    one_month_ago = Time.current.last_month
+    @last_month_logs = current_user.logs.where(day: one_month_ago.all_month)
+    # @sum_working_times = sum_working_times
   end
 
   def time_in
@@ -40,23 +47,13 @@ class User::LogsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @log = Log.find(params[:id])
-  #   @log.time_out = Time.current
-  # end
-
-  # def update
-  #   @log = Log.find(params[:id])
-  #   if @log.update(log_params)
-  #     redirect_to user_logs_path, notice: '変更しました'
-  #   else
-  #     render :edit
-  #   end
-  # end
-
   private
 
   def log_params
     params.require(:log).permit(:day, :time_in, :time_out, :rest_time)
   end
+
+  # def sum_working_times
+
+  # end
 end
