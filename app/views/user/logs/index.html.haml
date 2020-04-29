@@ -26,5 +26,9 @@
           %td= working_times(log) if log.time_out && log.rest_time
           %td= link_to '入力', user_log_edit_path(log, link_type: 'rest_time')
 
+  %p
+    総労働時間 
+    = @sum_working_times
+
 .last-month-index.text-center
   = link_to '← last month', user_logs_last_month_path, style: 'color: #3366FF', id: 'last-month-index'

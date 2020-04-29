@@ -2,6 +2,7 @@ class User::LogsController < ApplicationController
   def index
     today = Time.current
     @logs = current_user.logs.where(day: today.all_month)
+    @sum_working_times = sum_working_times
   end
 
   def last_month_index
@@ -46,6 +47,10 @@ class User::LogsController < ApplicationController
   def update
     @log = Log.find(params[:id])
     if @log.update(log_params)
+      # 労働時間を更新する
+      if @log.time_out
+        @log.update(working_times: working_times)
+      end
       redirect_to user_logs_path, notice: '変更しました'
     else
       render :edit
@@ -60,5 +65,12 @@ class User::LogsController < ApplicationController
 
   def working_times
     @log.time_out - @log.time_in
+  end
+
+  def sum_working_times
+    working_seconds = @logs.sum(:working_times)
+    working_minutes = working_seconds / 60
+    working_minutes_array = working_minutes.divmod(60)
+    working_minutes_array[0].to_s.rjust(2, '0') + ':' + working_minutes_array[1].to_i.to_s.rjust(2, '0')
   end
 end
