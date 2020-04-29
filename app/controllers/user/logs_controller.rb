@@ -24,16 +24,17 @@ class User::LogsController < ApplicationController
   def time_out
     @user = current_user
     @log = @user.logs.find_by(day: Time.current.all_day)
-    if @log
+    if @log && @log.rest_time
       unless @log.time_out
         @log.time_out = Time.current
+        @log.working_times = working_times
         @log.save
         redirect_to root_path, notice: 'See you again :)'
       else
         redirect_to root_path, alert: 'Your are already exited :('
       end
     else
-      redirect_to root_path, alert: '今日はまだ出勤ボタンが押されてません!!'
+      redirect_to root_path, alert: '出勤をしていない or 休憩が入力されてません'
     end
   end
 
@@ -57,7 +58,7 @@ class User::LogsController < ApplicationController
     params.require(:log).permit(:day, :time_in, :time_out, :rest_time)
   end
 
-  # def sum_working_times
-
-  # end
+  def working_times
+    @log.time_out - @log.time_in
+  end
 end
