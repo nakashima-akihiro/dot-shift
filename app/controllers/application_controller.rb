@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def remember_me
-    true
-  end
-
   private
 
   def configure_permitted_parameters
