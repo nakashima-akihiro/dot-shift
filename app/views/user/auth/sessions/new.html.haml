@@ -23,8 +23,13 @@
             .login-form-main-mail
               .login-form-main-mail-form
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "yourname@example.com"
-            .login-form-main-password.text-left
+            .login-form-main-password
               .login-form-main-password-form
                 = f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: "password"
+            .login-form-main-remember
+              .login-form-main-remember-checkbox
+                .form-check.mb-2
+                  = f.check_box :remember_me, class: 'form-check-input'
+                  = f.label :remember_me, class: 'form-check-label'
             .login-form-main-action
               = f.submit "ログイン", class: 'form-control btn btn-secondary'
