@@ -64,7 +64,9 @@ class User::LogsController < ApplicationController
   end
 
   def working_times
-    @log.time_out - @log.time_in
+    rest_time_array = @log.rest_time.split(':').map(&:to_i)
+    rest_time_seconds = rest_time_array[0] * 3600 + rest_time_array[1] * 60
+    @log.time_out - @log.time_in - rest_time_seconds
   end
 
   def sum_working_times
