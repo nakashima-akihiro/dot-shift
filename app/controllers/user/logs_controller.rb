@@ -2,13 +2,13 @@ class User::LogsController < ApplicationController
   def index
     today = Time.current
     @logs = current_user.logs.where(day: today.all_month)
-    @sum_working_times = sum_working_times
+    @sum_working_times = sum_working_times(@logs)
   end
 
   def last_month_index
     one_month_ago = Time.current.last_month
     @last_month_logs = current_user.logs.where(day: one_month_ago.all_month)
-    # @sum_working_times = sum_working_times
+    @sum_working_times = sum_working_times(@last_month_logs)
   end
 
   def time_in
@@ -69,8 +69,8 @@ class User::LogsController < ApplicationController
     @log.time_out - @log.time_in - rest_time_seconds
   end
 
-  def sum_working_times
-    working_seconds = @logs.sum(:working_times)
+  def sum_working_times(logs)
+    working_seconds = logs.sum(:working_times)
     working_minutes = working_seconds / 60
     working_minutes_array = working_minutes.divmod(60)
     working_minutes_array[0].to_s.rjust(2, '0') + ':' + working_minutes_array[1].to_i.to_s.rjust(2, '0')
