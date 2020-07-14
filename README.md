@@ -1,24 +1,11 @@
-# README
+## 押し忘れた時
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+heroku run rails console
+@user = User.find_by(name: "名前")
+@log = @user.logs.where(time_in: Time.current.in_time_zone.all_day)
+@log.time_in = "年-月-日 12:00:00"
 
-Things you may want to cover:
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+そのあとアプリ内で正しい時間に訂正する
