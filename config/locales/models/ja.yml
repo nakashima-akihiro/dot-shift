@@ -9,3 +9,5 @@ ja:
         updated_at: 更新日時
         email: メールアドレス
         password: パスワード
+      log:
+        day: 出勤日

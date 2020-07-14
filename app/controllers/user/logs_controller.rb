@@ -5,6 +5,19 @@ class User::LogsController < ApplicationController
     @sum_working_times = sum_working_times(@logs)
   end
 
+  def new
+    @log = current_user.logs.build
+  end
+
+  def create
+    @log = current_user.logs.build(log_params)
+    if @log.save
+      redirect_to user_logs_path(current_user), notice: '追加しました'
+    else
+      render :new
+    end
+  end
+
   def last_month_index
     one_month_ago = Time.current.last_month
     @last_month_logs = current_user.logs.where(day: one_month_ago.all_month).order(day: :asc)
@@ -58,6 +71,10 @@ class User::LogsController < ApplicationController
   end
 
   private
+
+  # def new_log_params
+  #   params.permit(:day, :time_in, :time_out, :rest_time)
+  # end
 
   def log_params
     params.require(:log).permit(:day, :time_in, :time_out, :rest_time)

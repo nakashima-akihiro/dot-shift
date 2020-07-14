@@ -19,7 +19,7 @@
         %th 休憩時間
       - @logs.each do |log|
         %tr
-          %td= l log.day, format: :day
+          %td= l log.day, format: :short
           %td= link_to (l log.time_in, format: :time_only), user_log_edit_path(log, link_type: 'time_in')
           %td= link_to (l log.time_out, format: :time_only), user_log_edit_path(log, link_type: 'time_out') if log.time_out
           %td= log.rest_time
@@ -29,6 +29,8 @@
   %p
     総労働時間 
     = @sum_working_times
+
+  %p= link_to '勤怠押し忘れはこちら', new_log_path
 
 .last-month-index.text-center
   = link_to '← last month', user_logs_last_month_path, style: 'color: #3366FF', id: 'last-month-index'

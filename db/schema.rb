@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_081149) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.datetime "day", null: false
+    t.date "day", null: false
     t.datetime "time_in"
     t.datetime "time_out"
     t.float "working_times"
