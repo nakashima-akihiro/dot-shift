@@ -1,24 +1,8 @@
-# README
+## 押し忘れ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+@user = User.find_by(name: "nakashima")
+@log = @user.logs.create(time_in: "2020-7-12 12:00:00", day: "2020-07-12 12:00:00", time_out: "2020-7-12 12:00:00", working_times: 0.0)
+@log.save
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
